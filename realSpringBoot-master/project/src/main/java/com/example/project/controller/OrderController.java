@@ -26,9 +26,9 @@ public class OrderController {
 	public ResponseEntity<List<Order>> list() {
 		return ResponseEntity.ok(orderService.list());
 	}
-
+/* 
 	@GetMapping(value = "/list/{id}")
 	public ResponseEntity<Order> getById(@PathVariable Integer id) {
 		return ResponseEntity.ok(mapper.toDto(orderService.findById(id)));
-	}
+	} */
 }
