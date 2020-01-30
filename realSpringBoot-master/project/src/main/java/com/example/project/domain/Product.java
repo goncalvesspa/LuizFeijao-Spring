@@ -41,4 +41,7 @@ public class Product {
 
     @Column(name = "IsDiscontinued", nullable = false, columnDefinition = "BIT")
     private Integer isDiscontinued;
+
+    @Column(name = "Imagem", nullable = false, length = 400, columnDefinition = "nvarchar")
+    private String imagem;
 }
