@@ -32,7 +32,7 @@ public class UploadController {
             return "redirect:uploadStatus";
         }
 
-        try {
+        try {  //
 
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
