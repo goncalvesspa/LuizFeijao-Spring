@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 import com.example.project.domain.Customer;
 import com.example.project.domain.Product;
+import com.example.project.domain.Supplier;
 import com.example.project.repository.CustomerRepository;
 import com.example.project.repository.ProductRepository;
 
@@ -72,8 +73,12 @@ public class ProductService {
 
 
     private static final String FILE_NAME = "/Luiz/realSpringBoot-master/docs/decola.xlsx";
+    //public Object uploadExcel(MultplartFile file){} //isso aqui pode substituir os dois metodos
     public static void main(String[] args) {
- try {
+ 
+        int count = o;
+        
+        try {
 
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
@@ -87,9 +92,43 @@ public class ProductService {
 
                 while (cellIterator.hasNext()) {
 
-                    Cell currentCell = cellIterator.next();
+                    Row currentRow = iteratorRow.next();
+                    Product produto = new Product();
+                    Supplier supplier = new Supplier()
+                    
+                    
+                    //Cell currentCell = cellIterator.next();
+
                     //getCellTypeEnum shown as deprecated for version 3.15
                     //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                   
+                    if(currentRow.getRowNum() > 0){
+
+                        Iterator<Cell> iteratorCell = currentRow.iterator();
+
+                        Cell currentCell = iterator.next();
+
+                        currentCell = iteratorCell.next();
+                        produto.setProductName(currentCell.getStringCellValue());
+
+                        currentCell = iteratorCell.next();
+                        Double value = currentCell.getNumericCellValue();
+                        suplier.setId(value.intValue());
+                        produto.setSupplierId(supplier);
+
+                        currentCell = iteratorCell.next();
+                        produto.setUnitPrice(currentCell.getStringCellValue());
+
+                        currentCell = iteratorCell.next();
+                        produto.setNamePackage(currentCell.getStringCellValue());
+
+                        currentCell = iterator.next();
+                        int valueVerific = (int) currentCell.getNumericCellValue();
+
+                        if(valueVerific == 0){}
+
+                    }
+                   
                     if (currentCell.getCellType() == CellType.STRING) {
                         System.out.print(currentCell.getStringCellValue() + "--");
                     } else if (currentCell.getCellType() == CellType.NUMERIC) {
@@ -98,6 +137,7 @@ public class ProductService {
 
                 }
                 System.out.println();
+                productRepository.save(produto);
 
             }
         } catch (FileNotFoundException e) {
